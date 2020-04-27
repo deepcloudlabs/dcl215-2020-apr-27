@@ -1,0 +1,2 @@
+module random.number.module {
+}
