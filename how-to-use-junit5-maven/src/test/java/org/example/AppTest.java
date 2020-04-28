@@ -3,9 +3,16 @@ package org.example;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+/*
+<plugin>
+<artifactId>maven-surefire-plugin</artifactId>
+<version>2.22.1</version>
+<configuration>
+<excludedGroups>stress</excludedGroups>
+</configuration>
+</plugin>
 
-
+ */
 public class AppTest {
     @Test
     @Tag("functional")
