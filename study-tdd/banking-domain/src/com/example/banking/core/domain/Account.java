@@ -1,19 +1,33 @@
 package com.example.banking.core.domain;
+
+/**
+ * @author Binnur Kurt <binnur.kurt@gmail.com>
+ */
 // Refactoring
 public class Account { // Entity -> Identity
-    private final String iban; // identity -> final
-    private double balance;
+    private final Iban iban; // identity -> final
+    private Money balance; // Value object, double -> Money -> Value object
 
-    public Account(String iban, double balance) {
+    public Account(Iban iban, Money balance) {
         this.iban = iban;
         this.balance = balance;
     }
 
-    public String getIban() {
+    public Iban getIban() {
         return iban;
     }
 
-    public double getBalance() {
+    public Money getBalance() {
         return balance;
+    }
+
+    public void deposit(Money money) {
+        this.balance = this.balance.add(money);
+    }
+
+    public void withdraw(Money money) {
+        if (money.getAmount() > balance.getAmount())
+            throw new InsufficientBalanceException();
+        this.balance = this.balance.sub(money);
     }
 }
