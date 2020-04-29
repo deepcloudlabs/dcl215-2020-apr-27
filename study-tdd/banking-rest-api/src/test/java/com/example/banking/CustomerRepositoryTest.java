@@ -47,6 +47,13 @@ public class CustomerRepositoryTest {
         );
     }
 
+    @Test
+    void findCustomerByIdentityShouldFail(){
+        var identity = TcKimlikNo.of("94534403888");
+        var customer = repository.findCustomerByIdentity(identity);
+        assertFalse(customer.isPresent());
+    }
+
     @AfterEach
     void dropCustomerCollection(){
         // drop collection

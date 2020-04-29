@@ -25,11 +25,14 @@ public class CustomerApplicationController {
     @PostMapping("{identity}")
     public TransferResponse transfer(@PathVariable String identity,
                                      @RequestBody TransferRequest request){
-        boolean success = customerApplication.transferMoney(TcKimlikNo.of(identity),
-                Iban.of(request.getFromIban()),
-                Iban.of(request.getToIban()),
-                Money.of(request.getAmount(), MoneyCurrency.valueOf(request.getFromCurrency()))
-        );
+        boolean success = false;
+        try{
+            success = customerApplication.transferMoney(TcKimlikNo.of(identity),
+                    Iban.of(request.getFromIban()),
+                    Iban.of(request.getToIban()),
+                    Money.of(request.getAmount(), MoneyCurrency.valueOf(request.getFromCurrency()))
+            );
+        } catch (IllegalArgumentException e){ }
         return new TransferResponse(success ? "Ok" : "Failed");
     }
 }

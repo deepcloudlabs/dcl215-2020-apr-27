@@ -20,7 +20,7 @@ public class CustomerMongoRepository implements CustomerRepository {
     @Override
     public Optional<Customer> findCustomerByIdentity(TcKimlikNo identity) {
         Optional<CustomerDocument> document = repository.findOneByIdentity(identity.getValue());
-        if (!document.isPresent()) Optional.empty();
+        if (!document.isPresent()) return Optional.empty();
         Customer customer = new Customer(identity, document.get().getFullname());
         document.get().getAccounts().forEach(accountDocument -> {
             customer.addAccount(new Account(Iban.of(accountDocument.getIban()), Money.of(accountDocument.getBalance(), accountDocument.getCurrency())));
