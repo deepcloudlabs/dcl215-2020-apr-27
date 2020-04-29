@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -92,8 +94,8 @@ public class AccountTest {
             Account acc = new Account(iban, money);
             // exercise + verification
             assertAll(
-                    () -> assertThrows(InsufficientBalanceException.class, () -> acc.withdraw(Money.of(1_001, currency))),
-                    () -> assertEquals(Money.of(1_000., currency), acc.getBalance())
+                () -> assertThrows(InsufficientBalanceException.class , () -> acc.withdraw(Money.of(1_001, currency))),
+                () -> assertEquals(Money.of(1_000., currency), acc.getBalance())
             );
         }
     }
