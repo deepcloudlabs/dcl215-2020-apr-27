@@ -8,6 +8,10 @@ import java.util.Objects;
 public final class TcKimlikNo {
     private final String value;
 
+    public String getValue() {
+        return value;
+    }
+
     private TcKimlikNo(String value) {
         this.value = value;
     }
@@ -37,9 +41,6 @@ public final class TcKimlikNo {
         return value != null ? value.hashCode() : 0;
     }
 
-    public String getValue() {
-        return value;
-    }
 
     public static boolean validate(String value) {
         if (value == null) return false;
